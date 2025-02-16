@@ -38,10 +38,11 @@ jobs:
         run: bin/rubocop -f github
 
       - name: Lint erbCode for consistent style
-        run: bundle exec htmlbeautifier app/views/*/*/*.html.erb
-        run: bundle exec htmlbeautifier app/views/*/*.html.erb
-        run: bundle exec erb_lint app/views/*/*/*.html.erb
-        run: bundle exec erb_lint app/views/*/*.html.erb
+        run: | 
+          bundle exec htmlbeautifier app/views/*/*/*.html.erb
+          bundle exec htmlbeautifier app/views/*/*.html.erb
+          bundle exec erb_lint app/views/*/*/*.html.erb
+          bundle exec erb_lint app/views/*/*.html.erb
 
   test:
     runs-on: ubuntu-latest
@@ -80,8 +81,9 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare
-        run: bundle exec rspec
+        run: | 
+          bin/rails db:test:prepare
+          bundle exec rspec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
