@@ -27,4 +27,5 @@ RSpec.configure do |config|
   else
     driven_by :selenium_chrome_headless
   end
+
 end
