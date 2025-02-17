@@ -76,6 +76,9 @@ jobs:
           node-version: '22'
       - run: yarn install --frozen-lockfile
 
+      - name: Precompile assets
+        run: RAILS_ENV=test bundle exec rake assets:precompile
+
       - name: Run tests
         env:
           RAILS_ENV: test
